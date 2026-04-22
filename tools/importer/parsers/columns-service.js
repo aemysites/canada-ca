@@ -15,7 +15,10 @@
  *   Col 2: Remaining 2 doormat items
  *   Col 3: "Contact us" heading + link
  *
- * Protecting the Canadian border section is moved out for cards-doormat.
+ * Block 3 (Protecting the Canadian border):
+ *   Col 1: "Protecting" heading + first 2 doormat items
+ *   Col 2: Remaining 2 doormat items
+ *   Col 3: (empty)
  */
 export default function parse(element, { document }) {
   const leftSection = element.querySelector('section.col-md-8.pull-left');
@@ -115,20 +118,35 @@ export default function parse(element, { document }) {
     );
   }
 
-  // --- Insert blocks and move Protecting out ---
+  // --- BLOCK 3: Protecting the Canadian border (empty col 3) ---
+  let block3 = null;
+  if (protectingSection) {
+    const protHeading = protectingSection.querySelector('h2');
+    const protDoormats = protectingSection.querySelectorAll('.gc-drmt');
+
+    const [protCol1, protCol2] = splitDoormats(protDoormats, 2);
+    if (protHeading) {
+      protCol1.insertBefore(protHeading.cloneNode(true), protCol1.firstChild);
+    }
+
+    // Empty col 3 to keep consistent 3-column grid
+    const emptyCol = document.createElement('div');
+
+    block3 = WebImporter.DOMUtils.createTable(
+      [['Columns Service'], [protCol1, protCol2, emptyCol]],
+      document,
+    );
+  }
+
+  // --- Insert all blocks and remove original row ---
   const parent = element.parentNode;
   parent.insertBefore(block1, element);
   if (block2) {
     parent.insertBefore(block2, element);
   }
-
-  // Move Protecting section out for cards-doormat parser
-  if (protectingSection) {
-    const wrapper = document.createElement('div');
-    wrapper.appendChild(protectingSection);
-    parent.insertBefore(wrapper, element);
+  if (block3) {
+    parent.insertBefore(block3, element);
   }
 
-  // Remove the original row
   element.remove();
 }

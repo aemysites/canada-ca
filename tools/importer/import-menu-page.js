@@ -6,7 +6,6 @@ import columnsIntroParser from './parsers/columns-intro.js';
 import columnsNewsParser from './parsers/columns-news.js';
 import columnsServiceParser from './parsers/columns-service.js';
 import cardsFeatureParser from './parsers/cards-feature.js';
-import cardsDoormatParser from './parsers/cards-doormat.js';
 import columnsLinksParser from './parsers/columns-links.js';
 
 // TRANSFORMER IMPORTS
@@ -19,7 +18,6 @@ const parsers = {
   'columns-news': columnsNewsParser,
   'columns-service': columnsServiceParser,
   'cards-feature': cardsFeatureParser,
-  'cards-doormat': cardsDoormatParser,
   'columns-links': columnsLinksParser,
 };
 
@@ -57,12 +55,6 @@ const PAGE_TEMPLATE = {
       ],
     },
     {
-      name: 'cards-doormat',
-      instances: [
-        'section.col-md-8 .wb-eqht .gc-drmt',
-      ],
-    },
-    {
       name: 'columns-links',
       instances: [
         'section.col-md-12 > .row > .lnkbx',
@@ -94,14 +86,6 @@ const PAGE_TEMPLATE = {
       style: null,
       blocks: ['columns-service'],
       defaultContent: [],
-    },
-    {
-      id: 'section-6',
-      name: 'Protecting the Canadian border',
-      selector: "section:has(> h2:contains('Protecting'))",
-      style: null,
-      blocks: ['cards-doormat'],
-      defaultContent: ['section > h2'],
     },
     {
       id: 'section-7',

@@ -2,7 +2,7 @@
   "status": "success",
   "url": "https://www.cbsa-asfc.gc.ca/menu-eng.html",
   "path": "menu-eng",
-  "timestamp": "2026-04-22T18:35:20.489Z",
+  "timestamp": "2026-04-22T18:48:37.390Z",
   "title": "Canada Border Services Agency",
   "template": "menu-page",
   "blocks": [
@@ -14,19 +14,6 @@
     "cards-feature",
     "cards-feature",
     "columns-service",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
-    "cards-doormat",
     "columns-links",
     "columns-links"
   ]

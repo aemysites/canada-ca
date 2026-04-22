@@ -36,12 +36,6 @@
           ]
         },
         {
-          "name": "cards-doormat",
-          "instances": [
-            "section.col-md-8 .wb-eqht .gc-drmt"
-          ]
-        },
-        {
           "name": "columns-links",
           "instances": [
             "section.col-md-12 > .row > .lnkbx",
@@ -83,18 +77,6 @@
             "columns-service"
           ],
           "defaultContent": []
-        },
-        {
-          "id": "section-6",
-          "name": "Protecting the Canadian border",
-          "selector": "section:has(> h2:contains('Protecting'))",
-          "style": null,
-          "blocks": [
-            "cards-doormat"
-          ],
-          "defaultContent": [
-            "section > h2"
-          ]
         },
         {
           "id": "section-7",

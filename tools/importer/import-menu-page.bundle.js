@@ -229,15 +229,27 @@ var CustomImportScript = (() => {
         document
       );
     }
+    let block3 = null;
+    if (protectingSection) {
+      const protHeading = protectingSection.querySelector("h2");
+      const protDoormats = protectingSection.querySelectorAll(".gc-drmt");
+      const [protCol1, protCol2] = splitDoormats(protDoormats, 2);
+      if (protHeading) {
+        protCol1.insertBefore(protHeading.cloneNode(true), protCol1.firstChild);
+      }
+      const emptyCol = document.createElement("div");
+      block3 = WebImporter.DOMUtils.createTable(
+        [["Columns Service"], [protCol1, protCol2, emptyCol]],
+        document
+      );
+    }
     const parent = element.parentNode;
     parent.insertBefore(block1, element);
     if (block2) {
       parent.insertBefore(block2, element);
     }
-    if (protectingSection) {
-      const wrapper = document.createElement("div");
-      wrapper.appendChild(protectingSection);
-      parent.insertBefore(wrapper, element);
+    if (block3) {
+      parent.insertBefore(block3, element);
     }
     element.remove();
   }
@@ -330,27 +342,8 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/cards-doormat.js
-  function parse3(element, { document }) {
-    const cells = [];
-    const cellContainer = document.createElement("div");
-    const heading = element.querySelector("h3, h2, h4");
-    if (heading) {
-      cellContainer.appendChild(heading);
-    }
-    const description = element.querySelector("p");
-    if (description) {
-      cellContainer.appendChild(description);
-    }
-    if (cellContainer.childNodes.length > 0) {
-      cells.push([cellContainer]);
-    }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-doormat", cells });
-    element.replaceWith(block);
-  }
-
   // tools/importer/parsers/columns-links.js
-  function parse4(element, { document }) {
+  function parse3(element, { document }) {
     const colWrapper = element.closest('[class*="col-md-"]');
     const rowContainer = colWrapper ? colWrapper.closest(".row") : null;
     if (rowContainer && rowContainer.getAttribute("data-columns-links-done")) {
@@ -517,8 +510,7 @@ var CustomImportScript = (() => {
     "columns-news": columnsNewsParser,
     "columns-service": parse,
     "cards-feature": parse2,
-    "cards-doormat": parse3,
-    "columns-links": parse4
+    "columns-links": parse3
   };
   var PAGE_TEMPLATE = {
     name: "menu-page",
@@ -553,12 +545,6 @@ var CustomImportScript = (() => {
         ]
       },
       {
-        name: "cards-doormat",
-        instances: [
-          "section.col-md-8 .wb-eqht .gc-drmt"
-        ]
-      },
-      {
         name: "columns-links",
         instances: [
           "section.col-md-12 > .row > .lnkbx",
@@ -590,14 +576,6 @@ var CustomImportScript = (() => {
         style: null,
         blocks: ["columns-service"],
         defaultContent: []
-      },
-      {
-        id: "section-6",
-        name: "Protecting the Canadian border",
-        selector: "section:has(> h2:contains('Protecting'))",
-        style: null,
-        blocks: ["cards-doormat"],
-        defaultContent: ["section > h2"]
       },
       {
         id: "section-7",
