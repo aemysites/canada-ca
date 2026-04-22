@@ -311,89 +311,49 @@ var CustomImportScript = (() => {
 
   // tools/importer/parsers/cards-feature.js
   function parse3(element, { document }) {
+    const items = element.querySelectorAll(".row > div.col-lg-4, .row > div.col-md-6");
+    if (items.length === 0) return;
     const cells = [];
-    const img = element.querySelector("img");
-    const link = element.querySelector("a");
-    const figcaption = element.querySelector("figcaption");
-    const figure = element.querySelector("figure");
-    const imageCell = [];
-    if (img) {
-      const imgClone = img.cloneNode(true);
-      imageCell.push(imgClone);
-    }
-    const textCell = [];
-    const isLeadership = !!element.querySelector(":scope > h3");
-    const hasFigure = !!figure;
-    const hasDirectDescP = !!element.querySelector(":scope > p");
-    if (isLeadership) {
-      const roleHeading = element.querySelector(":scope > h3");
-      const name = figcaption ? figcaption.textContent.trim() : "";
-      const descP = element.querySelector(":scope > p");
-      if (roleHeading) {
-        const heading = document.createElement("strong");
-        heading.textContent = roleHeading.textContent.trim();
-        textCell.push(heading);
-      }
-      if (name) {
-        const nameP = document.createElement("p");
-        nameP.textContent = name;
-        textCell.push(nameP);
-      }
-      if (descP) {
-        const desc = document.createElement("p");
-        desc.textContent = descP.textContent.trim();
-        textCell.push(desc);
-      }
-      if (link && link.href) {
-        const ctaLink = document.createElement("a");
-        ctaLink.href = link.href;
-        ctaLink.textContent = name || link.textContent.trim();
-        textCell.push(ctaLink);
-      }
-    } else if (hasFigure && !hasDirectDescP) {
-      const title = figcaption ? figcaption.textContent.trim() : "";
+    items.forEach((item) => {
+      const link = item.querySelector("a");
+      const img = item.querySelector("img");
+      const figcaption = item.querySelector("figcaption");
       const descP = link ? link.querySelector(":scope > p") : null;
+      const imageCell = document.createElement("div");
+      if (img) {
+        const pic = document.createElement("img");
+        pic.src = img.src;
+        pic.alt = img.alt || "";
+        imageCell.appendChild(pic);
+      }
+      const textCell = document.createElement("div");
+      const title = figcaption ? figcaption.textContent.trim() : "";
       if (title) {
-        const heading = document.createElement("strong");
-        heading.textContent = title;
-        textCell.push(heading);
+        const p = document.createElement("p");
+        const strong = document.createElement("strong");
+        strong.textContent = title;
+        p.appendChild(strong);
+        textCell.appendChild(p);
       }
       if (descP) {
-        const desc = document.createElement("p");
-        desc.textContent = descP.textContent.trim();
-        textCell.push(desc);
+        const p = document.createElement("p");
+        p.textContent = descP.textContent.trim();
+        textCell.appendChild(p);
       }
       if (link && link.href) {
-        const ctaLink = document.createElement("a");
-        ctaLink.href = link.href;
-        ctaLink.textContent = title || link.textContent.trim();
-        textCell.push(ctaLink);
+        const p = document.createElement("p");
+        const a = document.createElement("a");
+        a.href = link.href;
+        a.textContent = title || link.textContent.trim();
+        p.appendChild(a);
+        textCell.appendChild(p);
       }
-    } else {
-      const titleP = link ? link.querySelector("p") : null;
-      const title = titleP ? titleP.textContent.trim() : "";
-      const descP = element.querySelector(":scope > p");
-      if (title) {
-        const heading = document.createElement("strong");
-        heading.textContent = title;
-        textCell.push(heading);
-      }
-      if (descP) {
-        const desc = document.createElement("p");
-        desc.textContent = descP.textContent.trim();
-        textCell.push(desc);
-      }
-      if (link && link.href) {
-        const ctaLink = document.createElement("a");
-        ctaLink.href = link.href;
-        ctaLink.textContent = title || link.textContent.trim();
-        textCell.push(ctaLink);
-      }
-    }
-    if (imageCell.length > 0 || textCell.length > 0) {
-      cells.push([imageCell.length > 0 ? imageCell : "", textCell.length > 0 ? textCell : ""]);
-    }
-    const block = WebImporter.Blocks.createBlock(document, { name: "cards-feature", cells });
+      cells.push([imageCell, textCell]);
+    });
+    const block = WebImporter.DOMUtils.createTable(
+      [["Cards Feature"], ...cells],
+      document
+    );
     element.replaceWith(block);
   }
 
@@ -596,7 +556,7 @@ var CustomImportScript = (() => {
       {
         name: "cards-feature",
         instances: [
-          "section.gc-prtts .row > div.col-lg-4"
+          "section.gc-prtts"
         ]
       },
       {

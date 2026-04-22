@@ -10,17 +10,39 @@
 
 .columns-news > div > div:nth-child(1) img,
 .columns-news > div > div:nth-child(2) img {
-  width: 100%;
+  display: block;
+  max-width: 100%;
   height: auto;
   border: 1px solid #eee;
   padding: 4px;
-  display: block;
   margin-bottom: 8px;
 }
 
-.columns-news > div > div p strong a {
+/* Override EDS button auto-decoration — these should be plain links */
+.columns-news p.button-wrapper {
+  margin: 0;
+}
+
+.columns-news a.button {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
   color: var(--link-color);
+  font-size: inherit;
   font-weight: 700;
+  line-height: inherit;
+  text-decoration: underline;
+  white-space: normal;
+  overflow: visible;
+}
+
+.columns-news a.button:hover {
+  color: var(--link-hover-color);
+  background: none;
+  border: none;
 }
 
 .columns-news > div > div > p:last-child {
@@ -49,5 +71,10 @@
   .columns-news > div {
     flex-direction: row;
     gap: 24px;
+  }
+
+  .columns-news > div > div {
+    flex: 1 1 0;
+    min-width: 0;
   }
 }

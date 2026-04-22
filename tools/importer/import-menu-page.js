@@ -52,7 +52,7 @@ const PAGE_TEMPLATE = {
     {
       name: 'cards-feature',
       instances: [
-        'section.gc-prtts .row > div.col-lg-4',
+        'section.gc-prtts',
       ],
     },
     {
