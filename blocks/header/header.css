@@ -363,7 +363,9 @@ header .nav-search button[type="submit"]:hover {
   border-color: var(--button-primary-hover-bg);
 }
 
-header .nav-search button[type="submit"] svg {
+header .nav-search button[type="submit"] svg,
+header .nav-search button[type="submit"] img {
   width: 16px;
   height: 16px;
+  filter: brightness(0) invert(1);
 }
