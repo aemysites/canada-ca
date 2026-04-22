@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-feature",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-04-22T17:53:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cbsa-asfc.gc.ca/menu-eng.html",
+    "originPage": "CBSA agency landing page",
+    "blockPosition": "multiple"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "featured-content",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + paragraph",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "featured news and stories with images",
+      "leadership portrait cards",
+      "promotional feature cards"
+    ],
+    "notSuitableFor": [
+      "text-only doormat navigation",
+      "icon-based feature grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/content/menu-eng"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-22T17:53:00.000Z"
+  }
+}

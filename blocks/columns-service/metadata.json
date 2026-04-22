@@ -1,0 +1,31 @@
+{
+  "variantName": "columns-service",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-04-22T18:28:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cbsa-asfc.gc.ca/menu-eng.html",
+    "originPage": "CBSA agency landing page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "service-navigation-with-sidebar",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "doormat items col1 | doormat items col2 | sidebar link list",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": ["topic doormats with sidebar links", "3-column service navigation"],
+    "notSuitableFor": ["image layouts", "single content column"]
+  },
+  "usage": {
+    "pagesUsing": ["/content/menu-eng"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-22T18:28:00.000Z"
+  }
+}

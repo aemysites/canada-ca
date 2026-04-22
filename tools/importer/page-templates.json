@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "projectType": "doc"
+  },
+  "templates": [
+    {
+      "name": "menu-page",
+      "urls": [
+        "https://www.cbsa-asfc.gc.ca/menu-eng.html"
+      ],
+      "description": "Site menu and navigation landing page with categorized links to CBSA services and information",
+      "blocks": [
+        {
+          "name": "columns-intro",
+          "instances": [
+            "div.row.mrgn-tp-lg"
+          ]
+        },
+        {
+          "name": "columns-news",
+          "instances": [
+            "div.gc-nws"
+          ]
+        },
+        {
+          "name": "cards-feature",
+          "instances": [
+            "section.gc-crprt .wb-eqht > section.col-md-4",
+            "section.gc-prtts .row > div.col-lg-4"
+          ]
+        },
+        {
+          "name": "columns-service",
+          "instances": [
+            "div.row:has(> section.col-md-8.pull-left)"
+          ]
+        },
+        {
+          "name": "cards-doormat",
+          "instances": [
+            "section.col-md-8 .wb-eqht .gc-drmt"
+          ]
+        },
+        {
+          "name": "columns-links",
+          "instances": [
+            "section.col-md-12 > .row > .lnkbx",
+            "section > h2 + div.row.wb-eqht > div.col-md-6 > section.lnkbx"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Intro",
+          "selector": "main > .container > h1#wb-cont",
+          "style": null,
+          "blocks": [
+            "columns-intro"
+          ],
+          "defaultContent": [
+            "h1#wb-cont"
+          ]
+        },
+        {
+          "id": "section-2",
+          "name": "Latest News",
+          "selector": "main section:has(> h2:first-child):has(.gc-nws)",
+          "style": null,
+          "blocks": [
+            "columns-news"
+          ],
+          "defaultContent": [
+            "section > h2"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "Travel, Trade, Most Requested and Contact Us",
+          "selector": "div.row:has(> section.col-md-8.pull-left)",
+          "style": null,
+          "blocks": [
+            "columns-service"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-6",
+          "name": "Protecting the Canadian border",
+          "selector": "section:has(> h2:contains('Protecting'))",
+          "style": null,
+          "blocks": [
+            "cards-doormat"
+          ],
+          "defaultContent": [
+            "section > h2"
+          ]
+        },
+        {
+          "id": "section-7",
+          "name": "What we are doing",
+          "selector": "section.col-md-12:has(> h2)",
+          "style": null,
+          "blocks": [
+            "columns-links"
+          ],
+          "defaultContent": [
+            "section.col-md-12 > h2"
+          ]
+        },
+        {
+          "id": "section-8",
+          "name": "Leadership",
+          "selector": "section.gc-crprt",
+          "style": null,
+          "blocks": [
+            "cards-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-9",
+          "name": "Corporate Information",
+          "selector": "section:has(> h2:contains('Corporate'))",
+          "style": null,
+          "blocks": [
+            "columns-links"
+          ],
+          "defaultContent": [
+            "section > h2"
+          ]
+        },
+        {
+          "id": "section-10",
+          "name": "Features",
+          "selector": "section.gc-prtts",
+          "style": null,
+          "blocks": [
+            "cards-feature"
+          ],
+          "defaultContent": [
+            "section.gc-prtts > h2"
+          ]
+        }
+      ]
+    }
+  ]
+}
