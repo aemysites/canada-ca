@@ -124,11 +124,14 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  // Only assign nav classes to .section divs (skip head elements injected by dev server)
+  // Assign nav classes to content sections (skip script/meta/link elements from dev server)
   const sections = [...nav.querySelectorAll(':scope > div.section')];
+  const contentDivs = sections.length
+    ? sections
+    : [...nav.children].filter((c) => c.tagName === 'DIV' && !c.classList.contains('nav-hamburger'));
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
-    if (sections[i]) sections[i].classList.add(`nav-${c}`);
+    if (contentDivs[i]) contentDivs[i].classList.add(`nav-${c}`);
   });
 
   // Strip button classes from all nav links (DA auto-wraps links in <p> tags)
@@ -141,7 +144,7 @@ export default async function decorate(block) {
   // Build search field in nav-tools from :search: icon or text
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
-    const searchIcon = navTools.querySelector('.icon-search');
+    const searchIcon = navTools.querySelector('.icon-search, .icon.icon-search');
     const hasSearchText = navTools.textContent.includes(':search:');
     if (searchIcon || hasSearchText) {
       const iconImg = searchIcon ? searchIcon.querySelector('img') : null;
