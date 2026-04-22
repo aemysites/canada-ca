@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-doormat",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-04-22T17:53:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cbsa-asfc.gc.ca/menu-eng.html",
+    "originPage": "CBSA agency landing page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "service-doormat",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading link + paragraph",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "government service navigation pages",
+      "topic doormat grids without images",
+      "categorized link sections"
+    ],
+    "notSuitableFor": [
+      "pages requiring images in cards",
+      "product or feature showcase sections"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/content/menu-eng"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-22T17:53:00.000Z"
+  }
+}

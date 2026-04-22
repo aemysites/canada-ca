@@ -1,0 +1,31 @@
+{
+  "variantName": "columns-intro",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-04-22T18:19:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.cbsa-asfc.gc.ca/menu-eng.html",
+    "originPage": "CBSA agency landing page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "intro-with-sidebar",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "paragraph | heading + link list",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": ["intro text with sidebar content", "text + social links layout"],
+    "notSuitableFor": ["image-heavy layouts", "multi-row content"]
+  },
+  "usage": {
+    "pagesUsing": ["/content/menu-eng"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-22T18:19:00.000Z"
+  }
+}
