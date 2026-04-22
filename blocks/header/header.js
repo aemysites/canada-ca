@@ -124,17 +124,39 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  // Only assign nav classes to .section divs (skip head elements injected by dev server)
+  const sections = [...nav.querySelectorAll(':scope > div.section')];
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
-    const section = nav.children[i];
-    if (section) section.classList.add(`nav-${c}`);
+    if (sections[i]) sections[i].classList.add(`nav-${c}`);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
+  // Strip button classes from all nav links (DA auto-wraps links in <p> tags)
+  nav.querySelectorAll('.button').forEach((button) => {
+    button.className = '';
+    const buttonContainer = button.closest('.button-container');
+    if (buttonContainer) buttonContainer.className = '';
+  });
+
+  // Build search field in nav-tools from placeholder text
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    const toolsText = navTools.textContent.trim();
+    if (toolsText) {
+      navTools.innerHTML = '';
+      const searchForm = document.createElement('form');
+      searchForm.className = 'nav-search';
+      searchForm.setAttribute('role', 'search');
+      searchForm.innerHTML = `
+        <label for="nav-search-input" class="sr-only">${toolsText}</label>
+        <input id="nav-search-input" type="search" placeholder="${toolsText}">
+        <button type="submit" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+          </svg>
+        </button>`;
+      navTools.appendChild(searchForm);
+    }
   }
 
   const navSections = nav.querySelector('.nav-sections');

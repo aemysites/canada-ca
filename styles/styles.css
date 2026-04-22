@@ -45,7 +45,7 @@
   --content-max-width: 1140px;
 
   /* nav height */
-  --nav-height: 0px;
+  --nav-height: auto;
 }
 
 @media (width >= 900px) {
