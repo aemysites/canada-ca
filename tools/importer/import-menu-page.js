@@ -5,6 +5,7 @@
 import columnsIntroParser from './parsers/columns-intro.js';
 import columnsNewsParser from './parsers/columns-news.js';
 import columnsServiceParser from './parsers/columns-service.js';
+import cardsLeadershipParser from './parsers/cards-leadership.js';
 import cardsFeatureParser from './parsers/cards-feature.js';
 import columnsLinksParser from './parsers/columns-links.js';
 
@@ -17,6 +18,7 @@ const parsers = {
   'columns-intro': columnsIntroParser,
   'columns-news': columnsNewsParser,
   'columns-service': columnsServiceParser,
+  'cards-leadership': cardsLeadershipParser,
   'cards-feature': cardsFeatureParser,
   'columns-links': columnsLinksParser,
 };
@@ -42,9 +44,14 @@ const PAGE_TEMPLATE = {
       ],
     },
     {
+      name: 'cards-leadership',
+      instances: [
+        'section.gc-crprt',
+      ],
+    },
+    {
       name: 'cards-feature',
       instances: [
-        'section.gc-crprt .wb-eqht > section.col-md-4',
         'section.gc-prtts .row > div.col-lg-4',
       ],
     },
@@ -57,7 +64,7 @@ const PAGE_TEMPLATE = {
     {
       name: 'columns-links',
       instances: [
-        'section.col-md-12 > .row > .lnkbx',
+        'section.col-md-12 .row section.lnkbx',
         'section > h2 + div.row.wb-eqht > div.col-md-6 > section.lnkbx',
       ],
     },
@@ -100,7 +107,7 @@ const PAGE_TEMPLATE = {
       name: 'Leadership',
       selector: 'section.gc-crprt',
       style: null,
-      blocks: ['cards-feature'],
+      blocks: ['cards-leadership'],
       defaultContent: [],
     },
     {

@@ -2,18 +2,19 @@
   "status": "success",
   "url": "https://www.cbsa-asfc.gc.ca/menu-eng.html",
   "path": "menu-eng",
-  "timestamp": "2026-04-22T18:48:37.390Z",
+  "timestamp": "2026-04-22T19:05:41.695Z",
   "title": "Canada Border Services Agency",
   "template": "menu-page",
   "blocks": [
     "columns-intro",
     "columns-news",
-    "cards-feature",
-    "cards-feature",
-    "cards-feature",
+    "cards-leadership",
     "cards-feature",
     "cards-feature",
     "columns-service",
+    "columns-links",
+    "columns-links",
+    "columns-links",
     "columns-links",
     "columns-links"
   ]

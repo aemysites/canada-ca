@@ -1,33 +1,38 @@
 .columns-links > div {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
-.columns-links img {
-  width: 100%;
+.columns-links h3 {
+  font-size: var(--heading-font-size-m);
+  margin-top: 10px;
+  margin-bottom: 8px;
 }
 
-.columns-links > div > div {
-  order: 1;
+.columns-links ul {
+  padding-left: 1.2em;
+  margin: 0 0 8px;
 }
 
-.columns-links > div > .columns-links-img-col {
-  order: 0;
+.columns-links li {
+  margin-bottom: 6px;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
 }
 
-.columns-links > div > .columns-links-img-col img {
-  display: block;
+.columns-links p strong a {
+  font-weight: 700;
 }
 
 @media (width >= 900px) {
   .columns-links > div {
-    align-items: center;
-    flex-direction: unset;
-    gap: 24px;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
   }
 
   .columns-links > div > div {
     flex: 1;
-    order: unset;
   }
 }

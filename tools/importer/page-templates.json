@@ -23,9 +23,14 @@
           ]
         },
         {
+          "name": "cards-leadership",
+          "instances": [
+            "section.gc-crprt"
+          ]
+        },
+        {
           "name": "cards-feature",
           "instances": [
-            "section.gc-crprt .wb-eqht > section.col-md-4",
             "section.gc-prtts .row > div.col-lg-4"
           ]
         },
@@ -38,7 +43,7 @@
         {
           "name": "columns-links",
           "instances": [
-            "section.col-md-12 > .row > .lnkbx",
+            "section.col-md-12 .row section.lnkbx",
             "section > h2 + div.row.wb-eqht > div.col-md-6 > section.lnkbx"
           ]
         }
@@ -96,7 +101,7 @@
           "selector": "section.gc-crprt",
           "style": null,
           "blocks": [
-            "cards-feature"
+            "cards-leadership"
           ],
           "defaultContent": []
         },

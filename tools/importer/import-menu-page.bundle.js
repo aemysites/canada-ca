@@ -254,8 +254,63 @@ var CustomImportScript = (() => {
     element.remove();
   }
 
-  // tools/importer/parsers/cards-feature.js
+  // tools/importer/parsers/cards-leadership.js
   function parse2(element, { document }) {
+    const items = element.querySelectorAll(".wb-eqht > section.col-md-4");
+    if (items.length === 0) return;
+    const cells = [];
+    items.forEach((item) => {
+      const imgCell = document.createElement("div");
+      const textCell = document.createElement("div");
+      const img = item.querySelector("img");
+      if (img) {
+        const pic = document.createElement("img");
+        pic.src = img.src;
+        pic.alt = img.alt || "";
+        imgCell.appendChild(pic);
+      }
+      const role = item.querySelector("h3");
+      if (role) {
+        const p = document.createElement("p");
+        p.textContent = role.textContent.trim();
+        const strong = document.createElement("strong");
+        strong.textContent = p.textContent;
+        p.textContent = "";
+        p.appendChild(strong);
+        textCell.appendChild(p);
+      }
+      const caption = item.querySelector("figcaption");
+      if (caption) {
+        const p = document.createElement("p");
+        p.textContent = caption.textContent.trim();
+        textCell.appendChild(p);
+      }
+      const titleP = item.querySelector(":scope > p");
+      if (titleP) {
+        const p = document.createElement("p");
+        p.textContent = titleP.textContent.trim();
+        textCell.appendChild(p);
+      }
+      const link = item.querySelector("a");
+      if (link && caption) {
+        const p = document.createElement("p");
+        const a = document.createElement("a");
+        a.href = link.href;
+        a.textContent = caption.textContent.trim();
+        p.appendChild(a);
+        textCell.appendChild(p);
+      }
+      cells.push([imgCell, textCell]);
+    });
+    const block = WebImporter.DOMUtils.createTable(
+      [["Cards Leadership"], ...cells],
+      document
+    );
+    element.replaceWith(block);
+  }
+
+  // tools/importer/parsers/cards-feature.js
+  function parse3(element, { document }) {
     const cells = [];
     const img = element.querySelector("img");
     const link = element.querySelector("a");
@@ -343,7 +398,7 @@ var CustomImportScript = (() => {
   }
 
   // tools/importer/parsers/columns-links.js
-  function parse3(element, { document }) {
+  function parse4(element, { document }) {
     const colWrapper = element.closest('[class*="col-md-"]');
     const rowContainer = colWrapper ? colWrapper.closest(".row") : null;
     if (rowContainer && rowContainer.getAttribute("data-columns-links-done")) {
@@ -509,8 +564,9 @@ var CustomImportScript = (() => {
     "columns-intro": columnsIntroParser,
     "columns-news": columnsNewsParser,
     "columns-service": parse,
-    "cards-feature": parse2,
-    "columns-links": parse3
+    "cards-leadership": parse2,
+    "cards-feature": parse3,
+    "columns-links": parse4
   };
   var PAGE_TEMPLATE = {
     name: "menu-page",
@@ -532,9 +588,14 @@ var CustomImportScript = (() => {
         ]
       },
       {
+        name: "cards-leadership",
+        instances: [
+          "section.gc-crprt"
+        ]
+      },
+      {
         name: "cards-feature",
         instances: [
-          "section.gc-crprt .wb-eqht > section.col-md-4",
           "section.gc-prtts .row > div.col-lg-4"
         ]
       },
@@ -547,7 +608,7 @@ var CustomImportScript = (() => {
       {
         name: "columns-links",
         instances: [
-          "section.col-md-12 > .row > .lnkbx",
+          "section.col-md-12 .row section.lnkbx",
           "section > h2 + div.row.wb-eqht > div.col-md-6 > section.lnkbx"
         ]
       }
@@ -590,7 +651,7 @@ var CustomImportScript = (() => {
         name: "Leadership",
         selector: "section.gc-crprt",
         style: null,
-        blocks: ["cards-feature"],
+        blocks: ["cards-leadership"],
         defaultContent: []
       },
       {

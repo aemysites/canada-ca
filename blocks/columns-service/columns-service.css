@@ -1,33 +1,81 @@
 .columns-service > div {
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 
-.columns-service img {
-  width: 100%;
+.columns-service h2 {
+  font-size: var(--heading-font-size-xl);
+  border-bottom: 1px solid #af3c43;
+  padding-bottom: 0.2em;
+  margin-top: 0;
 }
 
-.columns-service > div > div {
-  order: 1;
+.columns-service h3 {
+  font-size: var(--heading-font-size-m);
+  margin-top: 15px;
+  margin-bottom: 5px;
 }
 
-.columns-service > div > .columns-service-img-col {
-  order: 0;
+.columns-service h3 a {
+  font-weight: 700;
 }
 
-.columns-service > div > .columns-service-img-col img {
-  display: block;
+.columns-service > div > div p {
+  font-size: var(--body-font-size-s);
+  line-height: 1.65;
+  margin-bottom: 0.5em;
+}
+
+.columns-service > div > div:last-child {
+  background-color: #eaebed;
+  padding: 15px;
+  border-left: 4px solid var(--dark-color);
+}
+
+.columns-service > div > div:last-child h2 {
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.columns-service > div > div:last-child ul {
+  padding-left: 1.2em;
+  margin: 0;
+}
+
+.columns-service > div > div:last-child li {
+  margin-bottom: 8px;
+  font-size: var(--body-font-size-m);
+  line-height: 1.5;
+}
+
+.columns-service > div > div:last-child:empty {
+  display: none;
+  background: none;
+  padding: 0;
+  border: none;
 }
 
 @media (width >= 900px) {
   .columns-service > div {
-    align-items: center;
-    flex-direction: unset;
+    flex-direction: row;
     gap: 24px;
+    align-items: flex-start;
   }
 
-  .columns-service > div > div {
+  .columns-service > div > div:first-child,
+  .columns-service > div > div:nth-child(2) {
     flex: 1;
-    order: unset;
+  }
+
+  .columns-service > div > div:last-child {
+    flex: 0 0 280px;
+  }
+
+  .columns-service > div > div:last-child:empty {
+    flex: 0;
   }
 }
