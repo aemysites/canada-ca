@@ -144,7 +144,8 @@ export default async function decorate(block) {
   // Build search field from :search: icon anywhere in nav
   const searchIcon = nav.querySelector('.icon-search, .icon.icon-search');
   const searchTextEl = !searchIcon ? [...nav.querySelectorAll('p')].find((p) => p.textContent.includes(':search:')) : null;
-  const searchTarget = searchIcon ? searchIcon.closest('div') : (searchTextEl ? searchTextEl.closest('div') : null);
+  const searchEl = searchIcon || searchTextEl;
+  const searchTarget = searchEl ? searchEl.closest('div') : null;
   if (searchTarget) {
     if (!searchTarget.classList.contains('nav-tools')) searchTarget.classList.add('nav-tools');
     const iconImg = searchIcon ? searchIcon.querySelector('img') : null;
