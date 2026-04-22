@@ -141,36 +141,35 @@ export default async function decorate(block) {
     if (buttonContainer) buttonContainer.className = '';
   });
 
-  // Build search field in nav-tools from :search: icon or text
-  const navTools = nav.querySelector('.nav-tools');
-  if (navTools) {
-    const searchIcon = navTools.querySelector('.icon-search, .icon.icon-search');
-    const hasSearchText = navTools.textContent.includes(':search:');
-    if (searchIcon || hasSearchText) {
-      const iconImg = searchIcon ? searchIcon.querySelector('img') : null;
-      navTools.innerHTML = '';
-      const searchForm = document.createElement('form');
-      searchForm.className = 'nav-search';
-      searchForm.setAttribute('role', 'search');
-      const label = document.createElement('label');
-      label.htmlFor = 'nav-search-input';
-      label.className = 'sr-only';
-      label.textContent = 'Search CBSA';
-      const input = document.createElement('input');
-      input.id = 'nav-search-input';
-      input.type = 'search';
-      input.placeholder = 'Search CBSA';
-      const btn = document.createElement('button');
-      btn.type = 'submit';
-      btn.setAttribute('aria-label', 'Search');
-      if (iconImg) {
-        btn.appendChild(iconImg.cloneNode(true));
-      } else {
-        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>';
-      }
-      searchForm.append(label, input, btn);
-      navTools.appendChild(searchForm);
+  // Build search field from :search: icon anywhere in nav
+  const searchIcon = nav.querySelector('.icon-search, .icon.icon-search');
+  const searchTextEl = !searchIcon ? [...nav.querySelectorAll('p')].find((p) => p.textContent.includes(':search:')) : null;
+  const searchTarget = searchIcon ? searchIcon.closest('div') : (searchTextEl ? searchTextEl.closest('div') : null);
+  if (searchTarget) {
+    if (!searchTarget.classList.contains('nav-tools')) searchTarget.classList.add('nav-tools');
+    const iconImg = searchIcon ? searchIcon.querySelector('img') : null;
+    searchTarget.innerHTML = '';
+    const searchForm = document.createElement('form');
+    searchForm.className = 'nav-search';
+    searchForm.setAttribute('role', 'search');
+    const label = document.createElement('label');
+    label.htmlFor = 'nav-search-input';
+    label.className = 'sr-only';
+    label.textContent = 'Search CBSA';
+    const input = document.createElement('input');
+    input.id = 'nav-search-input';
+    input.type = 'search';
+    input.placeholder = 'Search CBSA';
+    const btn = document.createElement('button');
+    btn.type = 'submit';
+    btn.setAttribute('aria-label', 'Search');
+    if (iconImg) {
+      btn.appendChild(iconImg.cloneNode(true));
+    } else {
+      btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85zm-5.242.156a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/></svg>';
     }
+    searchForm.append(label, input, btn);
+    searchTarget.appendChild(searchForm);
   }
 
   const navSections = nav.querySelector('.nav-sections');
