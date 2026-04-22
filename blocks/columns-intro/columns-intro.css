@@ -29,6 +29,17 @@
   margin-bottom: 0;
 }
 
+.columns-intro a.social-icon {
+  display: block;
+  text-decoration: none;
+}
+
+.columns-intro a.social-icon img {
+  display: block;
+  width: 38px;
+  height: 38px;
+}
+
 @media (width >= 900px) {
   .columns-intro > div {
     flex-direction: row;

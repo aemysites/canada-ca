@@ -15,13 +15,13 @@ export default function decorate(block) {
     const text = link.textContent.trim().toLowerCase();
     const iconUrl = SOCIAL_ICONS[text];
     if (iconUrl) {
+      const alt = link.textContent.trim();
+      link.textContent = '';
       const img = document.createElement('img');
       img.src = iconUrl;
-      img.alt = link.textContent.trim();
-      img.width = 38;
-      img.height = 38;
-      link.textContent = '';
+      img.alt = alt;
       link.appendChild(img);
+      link.classList.add('social-icon');
     }
   });
 }
