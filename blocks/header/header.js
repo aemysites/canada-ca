@@ -175,15 +175,44 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    // Strip button classes inside nav-sections
+    navSections.querySelectorAll('.button').forEach((b) => {
+      b.className = '';
+      const bc = b.closest('.button-container');
+      if (bc) bc.className = '';
+    });
+
+    // Mark dropdown items
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
+        const expanded = navSection.getAttribute('aria-expanded') === 'true';
+        toggleAllNavSections(navSections);
+        navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
       });
+    });
+  }
+
+  // Create "Menu" toggle button (GC WET pattern) — placed in nav bar, not inside nav-sections
+  if (navSections) {
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'nav-menu-toggle';
+    menuToggle.type = 'button';
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.innerHTML = 'Menu <span class="nav-menu-chevron"></span>';
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      navSections.classList.toggle('nav-sections-open', !expanded);
+    });
+    nav.insertBefore(menuToggle, navSections);
+
+    document.addEventListener('click', (e) => {
+      if (!navSections.contains(e.target) && e.target !== menuToggle) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        navSections.classList.remove('nav-sections-open');
+      }
     });
   }
 
