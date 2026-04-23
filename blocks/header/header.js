@@ -201,14 +201,18 @@ export default async function decorate(block) {
     menuToggle.className = 'nav-menu-toggle';
     menuToggle.type = 'button';
     menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.innerHTML = 'Menu <span class="nav-menu-chevron"></span>';
+    menuToggle.innerHTML = 'MENU <span class="nav-menu-chevron"></span>';
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
       const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
       menuToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
       navSections.classList.toggle('nav-sections-open', !expanded);
     });
-    nav.insertBefore(menuToggle, navSections);
+    // Insert a row break + the menu button before nav-sections
+    const menuRow = document.createElement('div');
+    menuRow.className = 'nav-menu-row';
+    menuRow.appendChild(menuToggle);
+    nav.insertBefore(menuRow, navSections);
 
     document.addEventListener('click', (e) => {
       if (!navSections.contains(e.target) && e.target !== menuToggle) {

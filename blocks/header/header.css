@@ -4,43 +4,24 @@ header .nav-wrapper {
   width: 100%;
   z-index: 2;
   position: relative;
-  border-bottom: 1px solid #af3c43;
 }
 
 header nav {
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 16px;
   margin: auto;
   max-width: 1140px;
-  padding: 10px 15px;
+  padding: 10px 15px 0;
   font-family: var(--body-font-family);
   position: relative;
-}
-
-header nav[aria-expanded='true'] {
-  flex-wrap: wrap;
 }
 
 @media (width >= 768px) {
   header nav {
     max-width: 750px;
-  }
-}
-
-@media (width >= 900px) {
-  header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0 24px;
-    padding: 10px 15px;
-  }
-
-  header nav[aria-expanded='true'] {
-    min-height: 0;
-    overflow: visible;
   }
 }
 
@@ -72,7 +53,7 @@ header nav a:hover {
   text-decoration: underline;
 }
 
-/* hamburger */
+/* hamburger — mobile only */
 header nav .nav-hamburger {
   height: 22px;
   display: flex;
@@ -167,15 +148,16 @@ header nav .nav-brand a {
   text-decoration: none;
 }
 
-/* sections — GC WET mega menu panel (hidden by default, shown via .nav-sections-open) */
-header nav .nav-sections {
-  display: none;
-  position: absolute;
-  top: 100%;
-  z-index: 100;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
+/* tools — search (right side of top row) */
+header nav .nav-tools {
+  flex: 0 0 auto;
+}
+
+/* Menu row — sits below the logo/search bar, full width */
+header .nav-menu-row {
+  flex: 0 0 100%;
+  border-top: 1px solid #af3c43;
+  padding: 5px 0;
 }
 
 /* Menu toggle button */
@@ -184,19 +166,20 @@ header .nav-menu-toggle {
   background-color: var(--dark-color);
   color: #fff;
   font-family: var(--body-font-family);
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
-  padding: 10px 20px;
-  border: 1px solid var(--dark-color);
+  padding: 8px 18px;
+  border: none;
   border-radius: 0;
   cursor: pointer;
   line-height: 1.45;
   white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 header .nav-menu-toggle:hover {
   background-color: var(--button-primary-hover-bg);
-  border-color: var(--button-primary-hover-bg);
 }
 
 /* Chevron icon */
@@ -216,6 +199,18 @@ header .nav-menu-toggle[aria-expanded='true'] .nav-menu-chevron {
   transform: rotate(180deg);
 }
 
+/* Mega menu panel — positioned below entire header */
+header nav .nav-sections {
+  display: none;
+  position: absolute;
+  top: 100%;
+  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  flex: 0 0 100%;
+}
+
 /* Menu panel visible when open */
 header nav .nav-sections.nav-sections-open {
   display: block;
@@ -223,7 +218,7 @@ header nav .nav-sections.nav-sections-open {
   overflow-x: hidden;
 }
 
-/* Force all text white inside mega menu — high specificity to override globals */
+/* Force all text white inside mega menu */
 header nav .nav-sections.nav-sections-open * {
   color: #fff;
   border-color: #555;
@@ -287,11 +282,6 @@ header nav .nav-sections li > ul > li:hover {
 
 header nav .nav-sections li > ul > li a:hover {
   text-decoration: underline;
-}
-
-/* tools — search */
-header nav .nav-tools {
-  flex: 0 0 auto;
 }
 
 /* Search form */
