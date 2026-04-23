@@ -1,20 +1,195 @@
-footer {
-  background-color: var(--light-color);
+footer .footer {
   font-size: var(--body-font-size-xs);
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer > div > div {
+  margin: 0;
 }
 
 footer .footer p {
   margin: 0;
 }
 
+/* Shared resets */
+footer .footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer .footer li {
+  margin: 0;
+}
+
+footer .footer h3 {
+  font-family: var(--heading-font-family);
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* === Band 1: Contextual footer (CBSA-specific links) === */
+footer .footer .footer-contextual {
+  background-color: #e1e4e7;
+  border-top: 4px solid #af3c43;
+}
+
+footer .footer .footer-contextual > div {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+
+footer .footer .footer-contextual h3 {
+  color: var(--text-color);
+}
+
+footer .footer .footer-contextual ul {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer .footer .footer-contextual li {
+  padding: 0 30px 0 0;
+}
+
+footer .footer .footer-contextual a {
+  color: var(--link-color);
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* === Band 2: Main GC footer (dark navy) === */
+footer .footer .footer-main {
+  background-color: #26374a;
+  color: #fff;
+}
+
+footer .footer .footer-main > div {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 25px 15px 0;
+}
+
+footer .footer .footer-main h3 {
+  color: #fff;
+}
+
+footer .footer .footer-main ul {
+  margin: 0 0 20px;
+}
+
+footer .footer .footer-main a:any-link {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* First list: contact links in a row */
+footer .footer .footer-main ul:first-of-type {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #4a6785;
+  padding-bottom: 20px;
+}
+
+footer .footer .footer-main ul:first-of-type li {
+  padding: 0 30px 0 0;
+}
+
+/* Second list: themes/topics in columns */
+footer .footer .footer-main ul:last-of-type {
+  column-count: 1;
+  column-gap: 10px;
+}
+
+footer .footer .footer-main ul:last-of-type li {
+  margin: 0 0 8px;
+  break-inside: avoid;
+}
+
+@media (width >= 600px) {
+  footer .footer .footer-main ul:last-of-type {
+    column-count: 2;
+  }
+}
+
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer .footer-main ul:last-of-type {
+    column-count: 3;
+  }
+}
+
+/* === Band 3: Sub-footer (black) === */
+footer .footer .footer-sub {
+  background-color: #000;
+  color: #fff;
+}
+
+footer .footer .footer-sub > div {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+footer .footer .footer-sub ul:first-of-type {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+footer .footer .footer-sub ul:first-of-type li {
+  padding: 0 15px 0 0;
+  border-right: 1px solid #555;
+  margin-right: 15px;
+  line-height: 1;
+}
+
+footer .footer .footer-sub ul:first-of-type li:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+footer .footer .footer-sub a:any-link {
+  color: #fff;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+/* Canada wordmark */
+footer .footer .footer-sub img {
+  height: 26px;
+  width: auto;
+}
+
+/* Responsive container widths */
+@media (width >= 768px) {
+  footer .footer .footer-contextual > div,
+  footer .footer .footer-main > div,
+  footer .footer .footer-sub > div {
+    max-width: 750px;
+  }
+}
+
+@media (width >= 992px) {
+  footer .footer .footer-contextual > div,
+  footer .footer .footer-main > div,
+  footer .footer .footer-sub > div {
+    max-width: 970px;
+  }
+}
+
+@media (width >= 1200px) {
+  footer .footer .footer-contextual > div,
+  footer .footer .footer-main > div,
+  footer .footer .footer-sub > div {
+    max-width: 1140px;
   }
 }
