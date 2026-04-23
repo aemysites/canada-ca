@@ -171,10 +171,11 @@ header nav .nav-brand a {
 header nav .nav-sections {
   display: none;
   position: absolute;
-  left: 0;
-  right: 0;
   top: 100%;
   z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
 }
 
 /* Menu toggle button */
@@ -221,79 +222,80 @@ header .nav-sections.nav-sections-open {
   background-color: #444;
 }
 
-header .nav-sections .default-content-wrapper {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-/* Top-level menu list */
-header .nav-sections .default-content-wrapper > ul {
+/* All lists inside mega menu */
+header .nav-sections ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-header .nav-sections .default-content-wrapper > ul > li {
-  font-weight: 400;
+/* All text inside mega menu is white */
+header nav .nav-sections,
+header nav .nav-sections p,
+header nav .nav-sections a:any-link,
+header nav .nav-sections strong {
+  color: #fff;
 }
 
-/* Top-level link text (bold items become menu category labels) */
-header .nav-sections .default-content-wrapper > ul > li > strong {
-  display: block;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 400;
-  padding: 14px 30px;
+/* Top-level category items */
+header .nav-sections .nav-drop {
   border-bottom: 1px solid #555;
   cursor: pointer;
 }
 
-header .nav-sections .default-content-wrapper > ul > li > strong:hover {
-  background-color: #333;
-  text-decoration: underline;
-}
-
-/* Sub-menu (dropdown items) — hidden by default */
-header .nav-sections .default-content-wrapper > ul > li > ul {
-  display: none;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  background-color: #333;
-}
-
-header .nav-sections .default-content-wrapper > ul > li[aria-expanded='true'] > ul {
+header .nav-sections .nav-drop > strong,
+header .nav-sections .nav-drop > p {
   display: block;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 14px 30px;
+  margin: 0;
+  line-height: 1.45;
 }
 
-header .nav-sections .default-content-wrapper > ul > li > ul > li {
+header .nav-sections .nav-drop > p a {
+  text-decoration: none;
+}
+
+header .nav-sections .nav-drop strong {
   font-weight: 400;
 }
 
-header .nav-sections .default-content-wrapper > ul > li > ul > li > a {
+header .nav-sections .nav-drop:hover {
+  background-color: #3a3a3a;
+}
+
+/* Sub-menu — hidden by default */
+header .nav-sections .nav-drop > ul {
+  display: none;
+  background-color: #333;
+}
+
+header .nav-sections .nav-drop[aria-expanded='true'] > ul {
   display: block;
-  color: #fff;
-  font-size: 16px;
-  padding: 10px 30px 10px 45px;
-  text-decoration: none;
+}
+
+header .nav-sections .nav-drop > ul > li {
   border-bottom: 1px solid #444;
 }
 
-header .nav-sections .default-content-wrapper > ul > li > ul > li > a:hover {
+header .nav-sections .nav-drop > ul > li:last-child {
+  border-bottom: none;
+}
+
+header .nav-sections .nav-drop > ul > li a {
+  display: block;
+  font-size: 16px;
+  padding: 10px 30px 10px 45px;
+  text-decoration: none;
+}
+
+header .nav-sections .nav-drop > ul > li:hover {
   background-color: #222;
+}
+
+header .nav-sections .nav-drop > ul > li a:hover {
   text-decoration: underline;
-}
-
-@media (width >= 992px) {
-  header .nav-sections .default-content-wrapper {
-    max-width: 970px;
-  }
-}
-
-@media (width >= 1200px) {
-  header .nav-sections .default-content-wrapper {
-    max-width: 1140px;
-  }
 }
 
 /* tools — search */
