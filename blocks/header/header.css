@@ -217,84 +217,75 @@ header .nav-menu-toggle[aria-expanded='true'] .nav-menu-chevron {
 }
 
 /* Menu panel visible when open */
-header .nav-sections.nav-sections-open {
+header nav .nav-sections.nav-sections-open {
   display: block;
   background-color: #444;
+  overflow-x: hidden;
+}
+
+/* Force all text white inside mega menu — high specificity to override globals */
+header nav .nav-sections.nav-sections-open * {
+  color: #fff;
+  border-color: #555;
 }
 
 /* All lists inside mega menu */
-header .nav-sections ul {
+header nav .nav-sections ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-/* All text inside mega menu is white */
-header nav .nav-sections,
-header nav .nav-sections p,
-header nav .nav-sections a:any-link,
-header nav .nav-sections strong {
-  color: #fff;
-}
-
-/* Top-level category items */
-header .nav-sections .nav-drop {
+header nav .nav-sections li {
   border-bottom: 1px solid #555;
-  cursor: pointer;
 }
 
-header .nav-sections .nav-drop > strong,
-header .nav-sections .nav-drop > p {
+header nav .nav-sections li p,
+header nav .nav-sections li strong {
   display: block;
   font-size: 18px;
   font-weight: 400;
   padding: 14px 30px;
   margin: 0;
   line-height: 1.45;
+  cursor: pointer;
 }
 
-header .nav-sections .nav-drop > p a {
+header nav .nav-sections li a:any-link {
+  color: #fff;
   text-decoration: none;
 }
 
-header .nav-sections .nav-drop strong {
-  font-weight: 400;
-}
-
-header .nav-sections .nav-drop:hover {
-  background-color: #3a3a3a;
-}
-
 /* Sub-menu — hidden by default */
-header .nav-sections .nav-drop > ul {
+header nav .nav-sections li > ul {
   display: none;
   background-color: #333;
 }
 
-header .nav-sections .nav-drop[aria-expanded='true'] > ul {
+header nav .nav-sections li[aria-expanded='true'] > ul {
   display: block;
 }
 
-header .nav-sections .nav-drop > ul > li {
+header nav .nav-sections li > ul > li {
   border-bottom: 1px solid #444;
 }
 
-header .nav-sections .nav-drop > ul > li:last-child {
-  border-bottom: none;
+header nav .nav-sections li:hover {
+  background-color: #3a3a3a;
 }
 
-header .nav-sections .nav-drop > ul > li a {
+header nav .nav-sections li > ul > li a:any-link {
   display: block;
   font-size: 16px;
   padding: 10px 30px 10px 45px;
   text-decoration: none;
 }
 
-header .nav-sections .nav-drop > ul > li:hover {
+header nav .nav-sections li > ul > li:hover {
   background-color: #222;
 }
 
-header .nav-sections .nav-drop > ul > li a:hover {
+header nav .nav-sections li > ul > li a:hover {
   text-decoration: underline;
 }
 

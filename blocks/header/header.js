@@ -182,8 +182,10 @@ export default async function decorate(block) {
       if (bc) bc.className = '';
     });
 
-    // Mark dropdown items
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+    // Mark dropdown items — find all top-level li with nested ul
+    let topLevelItems = navSections.querySelectorAll(':scope .default-content-wrapper > ul > li');
+    if (!topLevelItems.length) topLevelItems = navSections.querySelectorAll('ul > li');
+    topLevelItems.forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
         const expanded = navSection.getAttribute('aria-expanded') === 'true';
